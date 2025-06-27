@@ -1,0 +1,22 @@
+---
+section: trident-managing-k8s
+title: Trident 관리 및 모니터링
+entries:
+- title: Trident를 업그레이드합니다
+  entries:
+  - title: 업그레이드 개요
+    url: "/trident-managing-k8s/upgrade-trident.html"
+  - title: 운영자와 함께 업그레이드하십시오
+    entries:
+    - title: 운영자 업그레이드 워크플로우를 이해합니다
+      url: "/trident-managing-k8s/upgrade-operator-overview.html"
+    - title: 운영자와 함께 업그레이드하십시오
+      url: "/trident-managing-k8s/upgrade-operator.html"
+  - title: tridentctl로 업그레이드하십시오
+    url: "/trident-managing-k8s/upgrade-tridentctl.html"
+- title: tridentctl을 사용하여 Trident를 관리합니다
+  url: "/trident-managing-k8s/tridentctl.html"
+- title: Trident 모니터링
+  url: "/trident-use/monitor-trident.html"
+- title: Trident를 제거합니다
+  url: "/trident-managing-k8s/uninstall-trident.html"

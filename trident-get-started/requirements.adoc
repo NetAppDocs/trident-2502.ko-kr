@@ -1,0 +1,237 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/requirements.html 
+keywords: trident requirements, supported front ends, supported backends, kubernetes cluster, cluster requirements, version requirements, supported versions, host configuration, host os, system configuration, host operating system, fsx, ports, csi, images, orchestrators, storage systems, feature, kubernetes 
+summary: Trident를 설치하기 전에 다음과 같은 일반 시스템 요구 사항을 검토해야 합니다. 특정 백엔드에 추가 요구 사항이 있을 수 있습니다. 
+---
+= 요구 사항
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Trident를 설치하기 전에 다음과 같은 일반 시스템 요구 사항을 검토해야 합니다. 특정 백엔드에 추가 요구 사항이 있을 수 있습니다.
+
+
+
+== Trident에 대한 중요 정보입니다
+
+*Trident에 대한 다음 중요 정보를 읽어야 합니다.*
+
+.<strong> Trident </strong>에 대한 중요 정보입니다
+[%collapsible%open]
+====
+[]
+=====
+* Kubernetes 1.32가 이제 Trident에서 지원됩니다. Kubernetes를 업그레이드하기 전에 Trident를 업그레이드하십시오.
+* Trident은 multipath.conf 파일에서 권장 값을 값으로 하여 SAN 환경에서 다중 경로 구성을 엄격히 적용합니다 `find_multipaths: no`.
++
+다중 경로 이외의 구성을 사용하거나 `find_multipaths: yes` multipath.conf 파일에서 OR `find_multipaths: smart` 값을 사용하면 마운트 오류가 발생합니다. Trident는 21.07 릴리즈 이후 를 사용할 것을 `find_multipaths: no` 권장합니다.
+
+
+
+=====
+====
+
+
+== 지원되는 프런트엔드(오케스트레이터)
+
+Trident는 다음을 비롯한 다수의 컨테이너 엔진 및 오케스트레이터를 지원합니다.
+
+* 베어 메탈 기반 Anthos(VMware) 및 Anthos 1.16
+* Kubernetes 1.26-1.32
+* OpenShift 4.10-4.18
+* Rancher Kubernetes Engine 2(RKE2) v1.26.7 + rke2r1, v1.28.5 + rke2r1
+
+
+Trident 연산자는 다음 릴리즈에서 지원됩니다.
+
+* 베어 메탈 기반 Anthos(VMware) 및 Anthos 1.16
+* Kubernetes 1.26-1.32
+* OpenShift 4.10-4.18
+* Rancher Kubernetes Engine 2(RKE2) v1.26.7 + rke2r1, v1.28.5 + rke2r1
+
+
+Trident은 Google Kubernetes Engine(GKE), Amazon Elastic Kubernetes Services(EKS), Azure Kubernetes Service(AKS), Mirantis Kubernetes Engine(MKE), VMware Tanzu 포트폴리오를 포함한 기타 완전 관리형 Kubernetes 오퍼링도 지원합니다.
+
+Trident 및 ONTAP를 의 스토리지 공급자로 사용할 수 있습니다link:https://kubevirt.io/["KubeVirt"].
+
+
+WARNING: Trident가 설치된 Kubernetes 클러스터를 1.25에서 1.26 이상으로 업그레이드하기 전에 을 참조하십시오.link:../trident-managing-k8s/upgrade-operator.html#upgrade-a-helm-installation["Helm 설치를 업그레이드합니다"]
+
+
+
+== 지원되는 백엔드(스토리지)
+
+Trident를 사용하려면 다음과 같은 지원되는 백엔드가 하나 이상 필요합니다.
+
+* NetApp ONTAP용 Amazon FSx
+* Azure NetApp Files
+* Cloud Volumes ONTAP
+* Google Cloud NetApp 볼륨
+* NetApp All SAN 어레이(ASA)
+* NetApp가 제한적으로 지원하는 온프레미스 FAS, AFF 또는 ASA R2 클러스터 버전 을 link:https://mysupport.netapp.com/site/info/version-support["소프트웨어 버전 지원"]참조하십시오.
+* NetApp HCI/Element 소프트웨어 11 이상
+
+
+
+
+== KubeVirt 및 OpenShift 가상화를 위한 Trident 지원
+
+.지원되는 스토리지 드라이버:
+Trident는 KubeVirt 및 OpenShift 가상화를 위해 다음과 같은 ONTAP 드라이버를 지원합니다.
+
+* ONTAP - NAS
+* ONTAP - NAS - 경제형
+* ONTAP-SAN(iSCSI, FCP, NVMe over TCP)
+* ONTAP - SAN - 경제성(iSCSI만 해당)
+
+
+.고려 사항:
+* OpenShift Virtualization 환경에서 매개 변수(예 `fsType: "ext4"`:)를 갖도록 스토리지 클래스를 업데이트합니다 `fsType`. 필요한 경우 의 매개 변수를 `dataVolumeTemplates` 사용하여 볼륨 모드를 명시적으로 차단하도록 `volumeMode=Block` 설정하여 CDI에 블록 데이터 볼륨을 생성하도록 알립니다.
+* 블록 스토리지 드라이버용 _rwx 액세스 모드_:ONTAP-SAN(iSCSI, NVMe/TCP, FC) 및 ONTAP-SAN-Economy(iSCSI) 드라이버는 "volumemode:Block"(원시 장치)에서만 지원됩니다. 이러한 드라이버의 경우 `fstype` 볼륨이 원시 장치 모드로 제공되므로 매개 변수를 사용할 수 없습니다.
+* rwx 액세스 모드가 필요한 라이브 마이그레이션 워크플로의 경우 다음 조합이 지원됩니다.
++
+** NFS+ `volumeMode=Filesystem`
+** iSCSI `volumeMode=Block` + (물리적 장치)
+** NVMe/TCP+ `volumeMode=Block`(원시 장치)
+** FC+ `volumeMode=Block`(물리적 장치)
+
+
+
+
+
+
+== 피처 요구 사항
+
+아래 표에는 이 Trident 릴리스에서 사용할 수 있는 기능과 이 기능이 지원하는 Kubernetes 버전이 요약되어 있습니다.
+
+[cols="3"]
+|===
+| 피처 | Kubernetes 버전 | 기능 게이트가 필요합니까? 
+
+
+| 트라이던트  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| 볼륨 스냅샷  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| 체적 스냅샷의 PVC  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| iSCSI PV 크기 조정  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| ONTAP 양방향 CHAP  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| 동적 내보내기 정책  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| Trident 연산자  a| 
+1.26-1.32
+ a| 
+아니요
+
+
+
+| CSI 토폴로지  a| 
+1.26-1.32
+ a| 
+아니요
+
+|===
+
+
+== 호스트 운영 체제를 테스트했습니다
+
+Trident는 특정 운영 체제를 공식적으로 지원하지 않지만 다음과 같은 기능이 작동하는 것으로 알려져 있습니다.
+
+* OpenShift Container Platform(AMD64 및 ARM64)에서 지원하는 Red Hat Enterprise Linux CoreOS(RHCOS) 버전
+* RHEL 8+(AMD64 및 ARM64)
++
+
+NOTE: NVMe/TCP에는 RHEL 9 이상이 필요합니다.
+
+* Ubuntu 22.04 이상(AMD64 및 ARM64)
+* Windows Server 2022 를 참조하십시오
+
+
+기본적으로 Trident는 컨테이너에서 실행되므로 모든 Linux 작업자에서 실행됩니다. 그러나 이러한 작업자는 사용 중인 백엔드에 따라 표준 NFS 클라이언트 또는 iSCSI 이니시에이터를 사용하여 Trident에서 제공하는 볼륨을 마운트할 수 있어야 합니다.
+
+ `tridentctl`이 유틸리티는 이러한 Linux 배포판에서도 실행됩니다.
+
+
+
+== 호스트 구성
+
+Kubernetes 클러스터의 모든 작업자 노드는 Pod용으로 프로비저닝된 볼륨을 마운트할 수 있어야 합니다. 작업자 노드를 준비하려면 드라이버 선택에 따라 NFS, iSCSI 또는 NVMe 툴을 설치해야 합니다.
+
+link:../trident-use/worker-node-prep.html["작업자 노드를 준비합니다"]
+
+
+
+== 스토리지 시스템 구성
+
+Trident를 사용하면 스토리지 시스템을 백엔드 구성에서 사용해야 할 수 있습니다.
+
+link:../trident-use/backends.html["백엔드 구성"]
+
+
+
+== Trident 포트
+
+Trident에서는 통신을 위해 특정 포트에 액세스해야 합니다.
+
+link:../trident-reference/ports.html["Trident 포트"]
+
+
+
+== 컨테이너 이미지 및 해당 Kubernetes 버전
+
+에어갭 설치의 경우 다음 목록은 Trident 설치에 필요한 컨테이너 이미지의 참조입니다. 명령을 사용하여 `tridentctl images` 필요한 컨테이너 이미지 목록을 확인합니다.
+
+[cols="2"]
+|===
+| Kubernetes 버전 | 컨테이너 이미지 
+
+
+| v1.26.0, v1.27.0, v1.28.0, v1.29.0, v1.30.0, v1.31.0, v1.32.0  a| 
+* Docker.IO/NetApp/트라이덴트:25.02.0
+* Docker.IO/netapp/trident-autosupport:25.02
+* registry.k8s.io/sig-storage/csi-provisioner: v5.2.0
+* 레지스트리.k8s.io/sig-storage/csi-attacher:v4.8.0
+* 레지스트리.k8s.io/sig-storage/csi-resizer:v1.13.1
+* 레지스트리.k8s.io/sig-storage/csi-shotter:v8.2.0
+* registry.k8s.io/sig-storage/csi-node-driver-register: v2.13.0
+* Docker.IO/netapp/trident-operator:25.02.0 (선택 사항)
+
+
+|===

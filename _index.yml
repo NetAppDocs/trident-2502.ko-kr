@@ -1,0 +1,63 @@
+---
+indexpage:
+  lead: Trident은 NetApp에서 관리하는 오픈 소스 스토리지 프로비저닝 및 오케스트레이터입니다. Docker 및 Kubernetes에서
+    관리하는 컨테이너식 애플리케이션을 위한 스토리지 볼륨을 생성할 수 있습니다.
+  tiles:
+  - title: 릴리스 정보
+    links:
+    - title: 새로운 기능
+      url: trident-rn.html
+    - title: 이전 버전
+      url: "/earlier-versions.html"
+  - title: 시작하십시오
+    links:
+    - title: Trident에 대해 자세히 알아보십시오
+      url: "/trident-get-started/intro.html"
+    - title: 요구 사항
+      url: "/trident-get-started/requirements.html"
+    - title: 빠른 시작
+      url: "/trident-get-started/quickstart.html"
+  - title: Trident를 구축합니다
+    links:
+    - title: Trident 연산자를 사용하여 배포합니다
+      url: "/trident-get-started/kubernetes-deploy-operator.html"
+    - title: tridentctl을 사용하여 배포합니다
+      url: "/trident-get-started/kubernetes-deploy-tridentctl.html"
+    - title: Docker용 Trident를 구축하십시오
+      url: "/trident-docker/deploy-docker.html"
+  - title: Trident를 업그레이드합니다
+    links:
+    - title: Trident 연산자를 사용하여 업그레이드합니다
+      url: "/trident-managing-k8s/upgrade-operator.html"
+    - title: tridentctl로 업그레이드하십시오
+      url: "/trident-managing-k8s/upgrade-tridentctl.html"
+  - title: Trident를 사용합니다
+    links:
+    - title: 작업자 노드를 준비합니다
+      url: "/trident-use/worker-node-prep.html"
+    - title: 백엔드 구성
+      url: "/trident-use/backends.html"
+    - title: 스토리지 클래스를 관리합니다
+      url: "/trident-use/manage-stor-class.html"
+    - title: 볼륨 작업을 수행합니다
+      url: "/trident-use/vol-operations.html"
+  - title: 고급 데이터 관리 및 보호 기능을 제공합니다
+    links:
+    - title: Trident 보호를 통한 고급 데이터 보호
+      url: "/trident-protect/learn-about-trident-protect.html"
+    - title: Trident Protect를 구축합니다
+      url: "/trident-protect/trident-protect-installation.html"
+    - title: Trident Protect를 업그레이드합니다
+      url: "/trident-protect/trident-protect-upgrade.html"
+  - title: 데모 및 자습서
+    links:
+    - title: Trident 비디오
+      url: https://media.netapp.com/video-detail/c5bebae0-aab6-5fed-ae16-df6a3a8b260d/netapp-trident-advanced-data-protection-for-kubernetes-applications
+  - title: 블로그 및 커뮤니티
+    links:
+    - title: Trident 및 Trident 보호 블로그
+      url: "/blog-posts.html"
+    - title: NetApp.IO를 참조하십시오
+      url: https://netapp.io/
+    - title: 불화
+      url: https://discord.gg/NetApp

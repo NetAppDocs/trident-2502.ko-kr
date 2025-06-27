@@ -1,0 +1,291 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-customize-deploy.html 
+keywords: deploy, trident, methods, operator, tridentctl, helm, attributes, customize, tridentorchestrator, smb, windows 
+summary: 'Trident 연산자를 사용하면 사양의 특성을 사용하여 Trident가 설치되는 방식을 사용자 지정할 수 `TridentOrchestrator` 있습니다.' 
+---
+= Trident 운영자 설치를 사용자 지정합니다
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Trident 연산자를 사용하면 사양의 속성을 사용하여 Trident 설치를 사용자 정의할 수 `TridentOrchestrator` 있습니다. 허용되는 인수를 넘어 설치를 사용자 지정하려면 `TridentOrchestrator` 을 사용하여 `tridentctl` 사용자 지정 YAML 매니페스트를 생성하여 필요에 따라 수정할 수 있습니다.
+
+
+
+== 컨트롤러 Pod 및 노드 포드 이해
+
+Trident는 단일 컨트롤러 Pod와 클러스터의 각 작업자 노드에서 노드 Pod로 실행됩니다. 노드 포드는 Trident 볼륨을 마운트하려는 호스트에서 실행되고 있어야 합니다.
+
+Kuberneteslink:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["노드 선택기"^]로, link:https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/["관용과 오해"^]특정 노드 또는 기본 노드에서 실행할 Pod를 제한하는 데 사용됩니다. "ControllerPlugin" 및 을 사용하여 `NodePlugin` 제약 조건 및 재정의를 지정할 수 있습니다.
+
+* 컨트롤러 플러그인은 스냅샷 및 크기 조정과 같은 볼륨 프로비저닝 및 관리를 처리합니다.
+* 노드 플러그인은 스토리지에 노드를 연결하는 작업을 처리합니다.
+
+
+
+
+== 구성 옵션
+
+
+WARNING: `spec.namespace` Trident가 설치된 네임스페이스를 나타내기 위해 에 `TridentOrchestrator` 지정됩니다. 이 매개 변수 * 는 Trident 설치 후 업데이트할 수 없습니다 *. 이렇게 하면 `TridentOrchestrator` 상태가 로 `Failed`변경됩니다. Trident는 네임스페이스 간에 마이그레이션되지 않습니다.
+
+이 테이블에서는 속성에 대해 자세히 `TridentOrchestrator` 설명합니다.
+
+[cols="1,2,1"]
+|===
+| 매개 변수 | 설명 | 기본값 
+
+
+| `namespace` | Trident를 설치할 네임스페이스입니다 | `"default"` 
+
+
+| `debug` | Trident에 대해 디버깅을 활성화합니다 | `false` 
+
+
+| `enableForceDetach` | `ontap-san` `ontap-san-economy`, , `ontap-nas` 및 `ontap-nas-economy` 만 해당. Kubernetes Non-Graceful Node Shutdown(ngns)과 함께 작동하여 클러스터 관리자가 마운트된 볼륨이 있는 워크로드를 노드가 정상 상태가 아닌 경우 새 노드로 안전하게 마이그레이션할 수 있도록 합니다. | `false` 
+
+
+| `windows` |  `true`Windows 작업자 노드에 설치할 수 있도록 설정합니다. | `false` 
+
+
+| `cloudProvider`  a| 
+AKS 클러스터에서 관리되는 ID 또는 클라우드 ID를 사용할 때 로 `"Azure"` 설정합니다. EKS 클러스터에서 클라우드 ID를 사용할 때 로 `"AWS"` 설정합니다. GKE 클러스터에서 클라우드 ID를 사용할 때 로 `"GCP"` 설정합니다.
+| `""` 
+
+
+| `cloudIdentity`  a| 
+AKS 클러스터에서 클라우드 ID를 사용할 때 워크로드 ID("Azure.workload.identity/client-id: xxxxxxxxxxxx-xxxx-xxxx-xxxxxxxxxxxxx")로 설정합니다. EKS 클러스터에서 클라우드 ID를 사용할 때 AWS IAM 역할("'eks.amazonaws.com/role-arn: arn:AWS:IAM::123456:role/Trident-role'")로 설정합니다. GKE 클러스터에서 클라우드 ID를 사용하는 경우 클라우드 ID("'iam.gke.io/gc-service-account:xxxx@mygcpproject.iam.gserviceaccount.com') 로 설정합니다.
+| `""` 
+
+
+| `IPv6` | IPv6를 통해 Trident를 설치합니다 | 거짓 
+
+
+| `k8sTimeout` | Kubernetes 작업 시간이 초과되었습니다 | `30sec` 
+
+
+| `silenceAutosupport` | AutoSupport 번들을 NetApp에 자동으로 보내지 않습니다 | `false` 
+
+
+| `autosupportImage` | AutoSupport 텔레메트리 컨테이너 이미지입니다 | `"netapp/trident-autosupport:25.02"` 
+
+
+| `autosupportProxy` | AutoSupport 텔레메트리 전송을 위한 프록시의 주소/포트입니다 | `"http://proxy.example.com:8888"` 
+
+
+| `uninstall` | Trident를 제거하는 데 사용되는 플래그입니다 | `false` 
+
+
+| `logFormat` | 사용할 Trident 로깅 형식 [text, json] | `"text"` 
+
+
+| `tridentImage` | 설치할 Trident 이미지 | `"netapp/trident:25.02"` 
+
+
+| `imageRegistry` | 형식의 내부 레지스트리에 대한 경로입니다
+`<registry FQDN>[:port][/subpath]` | `"registry.k8s.io"` 
+
+
+| `kubeletDir` | 호스트의 kubelet 디렉토리에 대한 경로입니다 | `"/var/lib/kubelet"` 
+
+
+| `wipeout` | Trident의 전체 제거를 수행하기 위해 삭제할 리소스 목록입니다 |  
+
+
+| `imagePullSecrets` | 내부 레지스트리에서 이미지를 가져올 수 있는 비밀 |  
+
+
+| `imagePullPolicy` | Trident 운영자의 이미지 풀 정책을 설정합니다. 유효한 값은 항상 이미지를 가져오는 것입니다
+`Always`. 
+`IfNotPresent` 노드에 이미지가 없는 경우에만 이미지를 당깁니다. 
+`Never` 이미지를 가져오지 않습니다. | `IfNotPresent` 
+
+
+| `controllerPluginNodeSelector` | Pod용 추가 노드 선택기 과 같은 형식을 `pod.spec.nodeSelector` 사용합니다. | 기본값 없음, 선택 사항 
+
+
+| `controllerPluginTolerations` | Pod에 대한 Kubernetes 허용 설정을 재정의합니다. 과 같은 형식을 `pod.spec.Tolerations` 따릅니다. | 기본값 없음, 선택 사항 
+
+
+| `nodePluginNodeSelector` | Pod용 추가 노드 선택기 과 같은 형식을 `pod.spec.nodeSelector` 사용합니다. | 기본값 없음, 선택 사항 
+
+
+| `nodePluginTolerations` | Pod에 대한 Kubernetes 허용 설정을 재정의합니다. 과 같은 형식을 `pod.spec.Tolerations` 따릅니다. | 기본값 없음, 선택 사항 
+
+
+| `nodePrep` | Trident가 Kubernetes 클러스터의 노드를 준비하여 지정된 데이터 스토리지 프로토콜을 사용하여 볼륨을 관리할 수 있도록 합니다. * 현재 `iscsi` 지원되는 유일한 값입니다. * |  
+
+
+| `enableAutoBackendConfig` | 입력 매개 변수를 기반으로 백엔드 및 스토리지 클래스를 원활하게 생성하는 자동 백엔드 구성을 지원합니다. | 기본값 없음, 선택 사항 
+|===
+
+NOTE: POD 매개 변수 포맷에 대한 자세한 내용은 을 link:https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/["노드에 Pod 할당"^]참조하십시오.
+
+
+
+=== 강제 분리에 대한 세부 정보
+
+강제 분리는, `ontap-san-economy`, `onatp-nas` 및 `onatp-nas-economy` 에서만 사용할 수 `ontap-san` 있습니다. 강제 분리를 활성화하기 전에 Kubernetes 클러스터에서 비정상 노드 종료(ngns)를 활성화해야 합니다. ngns는 Kubernetes 1.28 이상에서 기본적으로 사용하도록 설정되어 있습니다. 자세한 내용은 을 link:https://kubernetes.io/docs/concepts/cluster-administration/node-shutdown/#non-graceful-node-shutdown["Kubernetes: 노드 정상 종료 아님"^]참조하십시오.
+
+
+NOTE: 또는 `ontap-nas-economy` 드라이버를 사용할 경우 `ontap-nas`, Trident이 관리형 엑스포트 정책을 사용하여 적용된 태그로 인해 Kubernetes 노드에서 액세스를 제한할 수 있도록 백엔드 구성에서 매개 변수를 로 `true` 설정해야 `autoExportPolicy` 합니다.
+
+
+WARNING: Trident는 Kubernetes ngns를 사용하기 때문에 허용할 수 없는 모든 워크로드의 일정이 재조정될 때까지 비정상 노드에서 테인트를 제거하지 마십시오 `out-of-service`. 무모하게 타트를 적용하거나 제거하면 백엔드 데이터 보호가 위태롭게 될 수 있습니다.
+
+Kubernetes 클러스터 관리자가 노드에 태그를 `enableForceDetach` 적용하고 `node.kubernetes.io/out-of-service=nodeshutdown:NoExecute` 로 설정하면 `true` Trident이 노드 상태와 다음을 확인합니다.
+
+. 해당 노드에 마운트된 볼륨에 대한 백엔드 입출력 액세스를 중단합니다.
+. Trident 노드 개체를 로 `dirty` 표시합니다(새 발행물에 안전하지 않음).
++
+
+NOTE: Trident 컨트롤러는 Trident 노드 포드에 의해 노드가 다시 검증될 때까지(로 표시된 후) 새로운 게시 볼륨 요청을 거부합니다 `dirty`. Trident가 노드를 확인할 수 있을 때까지(새 발행물에 안전함) 마운트된 PVC로 예약된 모든 작업 부하(클러스터 노드가 정상 및 준비 상태임 이후에도)는 수락되지 `clean` 않습니다.
+
+
+
+노드 상태가 복원되고 정점이 제거되면 Trident는 다음을 수행합니다.
+
+. 노드에서 오래된 게시된 경로를 식별하고 제거합니다.
+. 노드가 상태(서비스 중단 시간이 제거되고 노드가 상태)이고 모든 오래되고 `Ready` 게시된 경로가 정리된 경우 `cleanable`, Trident는 노드를 로 재전송하고 게시된 새로운 볼륨을 노드에 허용합니다. `clean`
+
+
+
+
+== 샘플 구성
+
+를 정의할 때 `TridentOrchestrator` 의 속성을 사용하여 설치를 사용자 지정할 수 <<구성 옵션>>있습니다.
+
+.기본 사용자 정의 구성
+[%collapsible]
+====
+명령을 실행한 후 생성된 이 예제는 `cat deploy/crds/tridentorchestrator_cr_imagepullsecrets.yaml` 기본 사용자 지정 설치를 나타냅니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  imagePullSecrets:
+  - thisisasecret
+----
+====
+.노드 선택기
+[%collapsible]
+====
+이 예에서는 노드 선택기가 있는 Trident를 설치합니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  controllerPluginNodeSelector:
+    nodetype: master
+  nodePluginNodeSelector:
+    storage: netapp
+----
+====
+.Windows 작업자 노드
+[%collapsible]
+====
+이 예제는 명령을 실행한 후 생성되며 `cat deploy/crds/tridentorchestrator_cr.yaml` Windows 작업자 노드에 Trident를 설치합니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  windows: true
+----
+====
+.AKS 클러스터에서 관리되는 ID입니다
+[%collapsible]
+====
+이 예에서는 AKS 클러스터에서 관리되는 ID를 사용하도록 Trident를 설치합니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  cloudProvider: "Azure"
+----
+====
+.AKS 클러스터에서 클라우드 ID입니다
+[%collapsible]
+====
+이 예에서는 AKS 클러스터에서 클라우드 ID와 함께 사용할 Trident를 설치합니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  cloudProvider: "Azure"
+  cloudIdentity: 'azure.workload.identity/client-id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx'
+
+----
+====
+.EKS 클러스터에서 클라우드 ID입니다
+[%collapsible]
+====
+이 예에서는 AKS 클러스터에서 클라우드 ID와 함께 사용할 Trident를 설치합니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentOrchestrator
+metadata:
+  name: trident
+spec:
+  debug: true
+  namespace: trident
+  cloudProvider: "AWS"
+  cloudIdentity: "'eks.amazonaws.com/role-arn: arn:aws:iam::123456:role/trident-role'"
+----
+====
+.GKE용 클라우드 ID
+[%collapsible]
+====
+이 예에서는 GKE 클러스터의 클라우드 ID와 함께 사용할 Trident를 설치합니다.
+
+[source, yaml]
+----
+apiVersion: trident.netapp.io/v1
+kind: TridentBackendConfig
+metadata:
+  name: backend-tbc-gcp-gcnv
+spec:
+  version: 1
+  storageDriverName: google-cloud-netapp-volumes
+  projectNumber: '012345678901'
+  network: gcnv-network
+  location: us-west2
+  serviceLevel: Premium
+  storagePool: pool-premium1
+----
+====

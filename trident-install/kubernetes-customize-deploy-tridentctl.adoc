@@ -1,0 +1,46 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/kubernetes-customize-deploy-tridentctl.html 
+keywords: deploy, Trident, methods, operator, tridentctl, helm, attributes, customize 
+summary: Trident 설치 프로그램을 사용하여 배포를 사용자 지정할 수 있습니다. 
+---
+= tridentctl 설치를 사용자 지정합니다
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Trident 설치 프로그램을 사용하여 설치를 사용자 지정할 수 있습니다.
+
+
+
+== 설치 프로그램에 대해 알아보십시오
+
+Trident 설치 프로그램을 사용하여 특성을 사용자 지정할 수 있습니다. 예를 들어 Trident 이미지를 개인 리포지토리에 복사한 경우 을 사용하여 이미지 이름을 지정할 수 `--trident-image` 있습니다. 필요한 CSI 사이드카 이미지와 Trident 이미지를 개인 리포지토리에 복사한 경우 양식을 사용하는 스위치를 `<registry FQDN>[:port]` 사용하여 리포지토리의 위치를 지정하는 것이 좋습니다 `--image-registry`.
+
+
+IMPORTANT: 전용 리포지토리에 Trident를 설치할 때 스위치를 사용하여 리포지토리 위치를 지정하는 경우 `--image-registry` 리포지토리 경로에서 를 사용하지 마십시오 `/netapp/`. 예를 들면 다음과 같습니다. `./tridentctl install --image-registry <image-registry> -n <namespace>`
+
+에서 데이터를 일반적인 경로 이외의 경로에 유지하는 `/var/lib/kubelet` Kubernetes 배포를 사용하는 경우 를 사용하여 대체 경로를 지정할 수 `--kubelet-dir` 있습니다. `kubelet`
+
+설치 관리자의 인수 이외에 설치를 사용자 지정해야 하는 경우 배포 파일을 사용자 지정할 수도 있습니다. 매개 변수를 사용하면 `--generate-custom-yaml` 설치 관리자 디렉터리에 다음과 같은 YAML 파일이 `setup` 생성됩니다.
+
+* `trident-clusterrolebinding.yaml`
+* `trident-deployment.yaml`
+* `trident-crds.yaml`
+* `trident-clusterrole.yaml`
+* `trident-daemonset.yaml`
+* `trident-service.yaml`
+* `trident-namespace.yaml`
+* `trident-serviceaccount.yaml`
+* `trident-resourcequota.yaml`
+
+
+이러한 파일을 생성한 후에는 필요에 따라 수정한 다음 을 사용하여 사용자 지정 배포를 설치할 수 `--use-custom-yaml` 있습니다.
+
+[source, console]
+----
+./tridentctl install -n trident --use-custom-yaml
+----
