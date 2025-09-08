@@ -201,16 +201,17 @@ AWS 세션 토큰의 만료가 장시간 실행되는 S3 백업 작업에 충분
 ** * spec.snapshotRetention *: 보존할 스냅샷 수입니다. 0은 스냅샷을 생성하지 않아야 함을 나타냅니다.
 ** *spec.granularity*: 일정이 실행되는 빈도. 가능한 값과 필수 관련 필드:
 +
-*** `hourly` (지정 필요 `spec.minute`)
-*** `daily` (및 을 지정해야 함 `spec.minute` `spec.hour`)
-*** `weekly` (, 및 을 `spec.dayOfWeek` 지정해야 함 `spec.minute, spec.hour`)
-*** `monthly` (, 및 을 `spec.dayOfMonth` 지정해야 함 `spec.minute, spec.hour`)
+*** `Hourly`(지정해야 함) `spec.minute` )
+*** `Daily`(지정해야 함) `spec.minute` 그리고 `spec.hour` )
+*** `Weekly`(지정해야 함) `spec.minute, spec.hour` , 그리고 `spec.dayOfWeek` )
+*** `Monthly`(지정해야 함) `spec.minute, spec.hour` , 그리고 `spec.dayOfMonth` )
+*** `Custom`
 
 
-** * spec.dayOfMonth *: (_Optional_) 스케줄을 실행할 요일(1-31). 세분화가 로 설정된 경우 이 필드는 `monthly`필수입니다.
-** *spec.dayOfWeek*: (_Optional_) 일정이 실행되는 요일(0-7)입니다. 0 또는 7의 값은 일요일을 나타냅니다. 세분화가 로 설정된 경우 이 필드는 `weekly`필수입니다.
-** * spec.hour *: (_Optional_) 스케줄을 실행할 시간(0-23)입니다. 세분화가, 또는 로 설정된 경우 이 필드는 `daily` `weekly` `monthly`필수입니다.
-** * spec.minute *: (_Optional_) 스케줄을 실행할 분(0-59)입니다. 세분화가 , , 또는 로 설정된 경우 이 필드가 `hourly` `daily` `weekly` `monthly`필요합니다.
+** *spec.dayOfMonth*: (_선택 사항_) 일정을 실행해야 하는 날짜(1~31)입니다. 세분성이 설정된 경우 이 필드가 필요합니다. `Monthly` .
+** *spec.dayOfWeek*: (_선택 사항_) 일정을 실행해야 하는 요일(0~7). 0 또는 7의 값은 일요일을 나타냅니다. 세분성이 설정된 경우 이 필드가 필요합니다. `Weekly` .
+** *spec.hour*: (_선택 사항_) 일정을 실행해야 하는 시간(0~23)입니다. 세분성이 설정된 경우 이 필드가 필요합니다. `Daily` , `Weekly` , 또는 `Monthly` .
+** *spec.minute*: (_선택 사항_) 일정을 실행해야 하는 분(0~59)입니다. 세분성이 설정된 경우 이 필드가 필요합니다. `Hourly` , `Daily` , `Weekly` , 또는 `Monthly` .
 +
 [source, yaml]
 ----
@@ -226,7 +227,7 @@ spec:
   appVaultRef: appvault-name
   backupRetention: "15"
   snapshotRetention: "15"
-  granularity: <monthly>
+  granularity: Monthly
   dayOfMonth: "1"
   dayOfWeek: "0"
   hour: "0"
