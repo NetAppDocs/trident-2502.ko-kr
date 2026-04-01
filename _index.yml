@@ -1,5 +1,11 @@
 ---
 indexpage:
+  title: Trident 25.02 설명서
+  summary: Trident은 NetApp에서 관리하는 오픈 소스 스토리지 프로비저닝 및 오케스트레이터입니다. Docker 및 Kubernetes에서
+    관리하는 컨테이너식 애플리케이션을 위한 스토리지 볼륨을 생성할 수 있습니다. ** Trident 25.02으로 업그레이드하는 것에 대한 중요
+    정보는 릴리스 노트를 참조하십시오.**
+  keywords: trident, documentation, trident release notes, get started, deploy, upgrade,
+    use, trident protect, 2502
   lead: Trident은 NetApp에서 관리하는 오픈 소스 스토리지 프로비저닝 및 오케스트레이터입니다. Docker 및 Kubernetes에서
     관리하는 컨테이너식 애플리케이션을 위한 스토리지 볼륨을 생성할 수 있습니다.
   tiles:
@@ -7,8 +13,6 @@ indexpage:
     links:
     - title: 새로운 기능
       url: trident-rn.html
-    - title: 이전 버전
-      url: "/earlier-versions.html"
   - title: 시작하십시오
     links:
     - title: Trident에 대해 자세히 알아보십시오
