@@ -31,9 +31,13 @@ Trident Protect는 다음을 포함한 광범위한 완전 관리형 및 자체 
 * 업스트림 Kubernetes
 
 
+[NOTE]
+====
+* Trident Protect를 설치하는 클러스터가 실행 중인 스냅샷 컨트롤러와 관련 CRD로 구성되어 있는지 확인하세요. 스냅샷 컨트롤러를 설치하려면 다음을 참조하세요. https://docs.netapp.com/us-en/trident/trident-use/vol-snapshots.html#deploy-a-volume-snapshot-controller["참조하십시오"] .
+* Trident Protect를 설치하려면 Helm 4.x 이상이 필요합니다.
 
-NOTE: Trident Protect를 설치하는 클러스터가 실행 중인 스냅샷 컨트롤러와 관련 CRD로 구성되어 있는지 확인하세요. 스냅샷 컨트롤러를 설치하려면 다음을 참조하세요. https://docs.netapp.com/us-en/trident/trident-use/vol-snapshots.html#deploy-a-volume-snapshot-controller["참조하십시오"] .
 
+====
 
 
 == Trident Protect 스토리지 백엔드 호환성
