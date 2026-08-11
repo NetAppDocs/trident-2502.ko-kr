@@ -13,6 +13,7 @@ summary: 'Trident를 Amazon FSx for NetApp ONTAP와 함께 사용하면 Amazon E
 
 
 
+[[ontap-san-and-nas-driver-integration]]
 == ONTAP SAN 및 NAS 드라이버 통합
 
 스토리지 백엔드를 생성하려면 JSON 또는 YAML 형식으로 구성 파일을 만들어야 합니다. 파일에서 원하는 스토리지 유형(NAS 또는 SAN), 파일 시스템, SVM을 가져와 인증 방법을 지정해야 합니다. 다음 예제는 NAS 기반 스토리지를 정의하고 AWS 암호를 사용하여 사용하려는 SVM에 자격 증명을 저장하는 방법을 보여줍니다.
@@ -100,6 +101,7 @@ backend-tbc-ontap-nas        tbc-ontap-nas        933e0071-66ce-4324-b9ff-f96d91
 
 
 
+[[fsx-for-ontap-driver-details]]
 == FSx for ONTAP 드라이버 세부 정보
 
 다음 드라이버를 사용하여 Trident를 Amazon FSx for NetApp ONTAP와 통합할 수 있습니다.
@@ -132,6 +134,7 @@ backend-fsx-ontap-nas   backend-fsx-ontap-nas   7a551921-997c-4c37-a1d1-f2f4c87f
 ----
 
 
+[[backend-advanced-configuration-and-examples]]
 == 백엔드 고급 구성 및 예
 
 백엔드 구성 옵션은 다음 표를 참조하십시오.
@@ -224,6 +227,7 @@ backend-fsx-ontap-nas   backend-fsx-ontap-nas   7a551921-997c-4c37-a1d1-f2f4c87f
 |===
 
 
+[[backend-configuration-options-for-provisioning-volumes]]
 == 볼륨 프로비저닝을 위한 백엔드 구성 옵션
 
 구성 섹션에서 이러한 옵션을 사용하여 기본 프로비저닝을 제어할 수 `defaults` 있습니다. 예를 들어, 아래 구성 예제를 참조하십시오.
@@ -270,6 +274,7 @@ backend-fsx-ontap-nas   backend-fsx-ontap-nas   7a551921-997c-4c37-a1d1-f2f4c87f
 |===
 
 
+[[prepare-to-provision-smb-volumes]]
 == SMB 볼륨 프로비저닝을 위한 준비
 
 드라이버를 사용하여 SMB 볼륨을 프로비저닝할 수 `ontap-nas` 있습니다. 다음 단계를 완료하기 전에 <<ONTAP SAN 및 NAS 드라이버 통합>>수행하십시오.

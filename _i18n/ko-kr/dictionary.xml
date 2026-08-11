@@ -1230,7 +1230,6 @@
   <block id="dcb987a2d08ee1a9198d1183b1a63a96" category="inline-link-macro">방법 간 이동</block>
   <block id="bd1cc9ebdb33ed22a54815219f97af08" category="section-title">Trident 연산자 사용</block>
   <block id="b2ad529645b5bea51c4bcd516a5c5c8f" category="inline-link-macro">Trident 운영자 배포를 사용자 지정합니다</block>
-  <block id="4561600b99ad801aedaa0ed3d3f3d7dd" category="paragraph">수동으로 배포하든 Helm을 사용하든 Trident 운영자는 설치를 단순화하고 Trident 리소스를 동적으로 관리할 수 있는 훌륭한 방법입니다. <block ref="5290e5312b651716bedf8a83ec5a6467" category="inline-link-macro-rx"></block>사용자 정의 리소스(CR)의 특성을 사용할<block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 수도 있습니다.</block>
   <block id="9d2c1d92b0ecb606394b40e3553d07d2" category="paragraph">Trident 연산자를 사용하면 다음과 같은 이점이 있습니다.</block>
   <block id="4c4c1456097b6c9eca1c708465c381be" category="example-title">&lt;strong&gt; Trident 개체 생성 &lt;/strong&gt;</block>
   <block id="9bb09894435f05fa667865ab4c45ace7" category="paragraph">Trident 운영자가 Kubernetes 버전에 대해 다음 오브젝트를 자동으로 생성합니다.</block>
@@ -5440,8 +5439,6 @@
   <block id="714ad635b7b855ea6b214ed7b344a93a" category="paragraph">Cloud Volumes ONTAP은 클라우드에서 ONTAP 데이터 관리 소프트웨어를 실행하는 소프트웨어 전용 스토리지 어플라이언스입니다. Cloud Volumes ONTAP을 프로덕션 워크로드, 재해 복구, DevOps, 파일 공유 및 데이터베이스 관리에 사용할 수 있습니다. 스토리지 효율성, 고가용성, 데이터 복제, 데이터 계층화 및 애플리케이션 일관성을 제공하여 엔터프라이즈 스토리지를 클라우드로 확장합니다.</block>
   <block id="77b3d37737668900e7a3090c236b1f43" category="paragraph"><block ref="edd2b7aa1c7509676e2980018fef6c49" category="inline-link-rx"></block>는 NFS를 통해 NAS 볼륨을 제공하는 클라우드 네이티브 파일 서비스로, 올플래시 성능을 제공합니다. 이 서비스를 통해 기존 애플리케이션을 포함한 모든 워크로드를 GCP 클라우드에서 실행할 수 있습니다. 일관된 고성능, 즉각적인 클론 생성, 데이터 보호 및 Google Compute Engine(GCE) 인스턴스에 대한 안전한 액세스를 제공하는 완전 관리형 서비스입니다.</block>
   <block id="365f044223bbae18d908189b4742ff4c" category="paragraph"><block ref="365f044223bbae18d908189b4742ff4c" category="inline-link-macro-rx"></block></block>
-  <block id="4deedcf505244b8bc6daab6ead8e8854" category="paragraph"><block ref="13fcb527df2ae485e2a7b3f3592d4d67" category="inline-link-macro-rx"></block>을(를) 검토하여 설치 사전 요구 사항을 충족했는지, 그리고 사용 환경에 맞는 올바른 설치 옵션을 선택했는지 확인하십시오.</block>
-  <block id="3e258a7587bd27e216b90902e5d08696" category="paragraph"><block ref="0095f892a8685f0db0b9b157339794fc" category="inline-link-macro-rx"></block> 외에도 <block ref="fc0cdbd8defe0c7175199dd05a0f8e76" category="inline-link-macro-rx"></block>이(가) 필요합니다.</block>
   <block id="e9d36c266026dc04d43783120d0a2d1d" category="paragraph">Linux 호스트에 로그인하여 정상적으로 작동하는 <block ref="958ebeab180637e89445160bac2d22e7" category="inline-link-macro-rx"></block>를 관리하고 있는지, 그리고 필요한 권한이 있는지 확인하십시오.</block>
   <block id="6e0142dfd4a5236fbce5c22e4e30fc2b" category="paragraph">설치를 시작하기 전에 Linux 호스트에 로그인하여 작동 중인 <block ref="958ebeab180637e89445160bac2d22e7" category="inline-link-macro-rx"></block>를 관리하고 있는지, 필요한 권한이 있는지 확인합니다.</block>
   <block id="dde53589c85fa1215e4a3d3c3a0d6508" category="paragraph"><block ref="90e03a843b5d1f923d0ef6b32fbf11b0" category="inline-link-macro-rx"></block>을(를) 검토하여 설치 사전 요구 사항을 충족했는지, 그리고 사용 환경에 맞는 올바른 설치 옵션을 선택했는지 확인하십시오.</block>
@@ -5477,4 +5474,7 @@
   <block id="4d7f894e8ec350a861c28ea984648f59" category="paragraph"><block ref="22ab900b028c044945b4dba56093fe8f" category="inline-link-rx"></block> 백엔드를 구성하고 사용하려면 다음이 필요합니다.</block>
   <block id="9ea1dc44c501f59786a0dd2c5ebc2d21" category="list-text">Trident AutoSupport는 개인 식별 정보(PII) 또는 개인 정보를 수집하거나 전송하지 않습니다. Trident 컨테이너 이미지 자체에는 적용되지 않는<block ref="ea14b34590cee15ec565ad8fd8feca2e" category="inline-link-rx"></block>와 함께 제공됩니다. NetApp의 데이터 보안 및 신뢰에 대한 노력에 대해 자세히 알아볼 수 있습니다<block ref="ea3b01bc03342a227ac7c6848f1e44fa" category="inline-link-rx"></block>.</block>
   <block id="0aed33e870a02a203987e1f6cbeb75d8" category="list-text">Trident를<block ref="5990d744db8a85d254742635736f0912" category="inline-link-rx"></block> 사용할 때 발생할 수 있는 일반적인 문제는 테넌트 및 클라이언트 암호가 권한이 부족한 앱 등록에서 제공되는 경우입니다. Trident 요구 사항의 전체 목록은 <block ref="afedf4ee56554ea6e6b54e6aa206680c" category="inline-link-macro-rx"></block> 구성을 참조하십시오.</block>
+  <block id="218a0c4bd3daf2a2ce3574281b7ca0b2" category="paragraph"><block ref="d5658c9dfbfb4ef585182e92445a8919" category="inline-link-macro-rx"></block>을(를) 검토하여 설치 사전 요구 사항을 충족했는지, 그리고 사용 환경에 맞는 올바른 설치 옵션을 선택했는지 확인하십시오.</block>
+  <block id="3b09004494ad8605a5dd0f3024d25e71" category="paragraph"><block ref="664da4bd07fc6e33aa43f13bb999ea26" category="inline-link-macro-rx"></block> 외에도 <block ref="fc0cdbd8defe0c7175199dd05a0f8e76" category="inline-link-macro-rx"></block>이(가) 필요합니다.</block>
+  <block id="b7bec5d0d77ca93cd7a03308720c371e" category="paragraph">수동으로 배포하든 Helm을 사용하든, Trident operator는 설치를 간소화하고 Trident 리소스를 동적으로 관리하는 훌륭한 방법입니다. <block ref="a1f2adae0e8434fa57fbe3e21b52345e" category="inline-link-macro-rx"></block><block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 사용자 정의 리소스(CR)의 속성을 활용할 수도 있습니다.</block>
 </blocks>

@@ -16,6 +16,7 @@ summary:
 
 
 
+[[google-cloud-netapp-volumes-driver-details]]
 == Google Cloud NetApp 볼륨 드라이버 세부 정보입니다
 
 Trident는 `google-cloud-netapp-volumes` 클러스터와 통신할 수 있는 드라이버를 제공합니다. 지원되는 액세스 모드는 _ReadWriteOnce_(RWO), _ReadOnlyMany_(ROX), _ReadWriteMany_(rwx), _ReadWriteOncePod_(RWOP)입니다.
@@ -37,6 +38,7 @@ RWO, ROX, rwx, RWOP
 |===
 
 
+[[cloud-identity-for-gke]]
 == GKE용 클라우드 ID
 
 클라우드 ID를 사용하면 Kubernetes Pod에서 명시적 Google Cloud 자격 증명을 제공하지 않고 워크로드 ID로 인증하여 Google Cloud 리소스에 액세스할 수 있습니다.

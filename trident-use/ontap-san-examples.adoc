@@ -16,6 +16,7 @@ Trident 설치 시 ONTAP SAN 드라이버를 생성하고 사용하는 방법에
 
 
 
+[[backend-configuration-options]]
 == 백엔드 구성 옵션
 
 백엔드 구성 옵션은 다음 표를 참조하십시오.
@@ -144,6 +145,7 @@ NOTE: SVM에서 Aggregate를 업데이트하면 Trident 컨트롤러를 다시 �
 |===
 
 
+[[recommendations-for-using-formatoptions]]
 === 포맷옵션 사용에 대한 권장 사항
 
 Trident에서는 다음 옵션을 사용하여 서식 프로세스를 신속하게 수행할 것을 권장합니다.
@@ -155,6 +157,7 @@ Trident에서는 다음 옵션을 사용하여 서식 프로세스를 신속하�
 
 
 
+[[backend-configuration-options-for-provisioning-volumes]]
 == 볼륨 프로비저닝을 위한 백엔드 구성 옵션
 
 구성 섹션에서 이러한 옵션을 사용하여 기본 프로비저닝을 제어할 수 `defaults` 있습니다. 예를 들어, 아래 구성 예제를 참조하십시오.
@@ -198,6 +201,7 @@ Trident에서는 다음 옵션을 사용하여 서식 프로세스를 신속하�
 |===
 
 
+[[volume-provisioning-examples]]
 === 볼륨 프로비저닝의 예
 
 다음은 기본값이 정의된 예입니다.
@@ -243,6 +247,7 @@ image::../media/vol-show-san.png[에는 volume show 명령의 출력이 나와 �
 
 
 
+[[minimal-configuration-examples]]
 == 최소 구성의 예
 
 다음 예에서는 대부분의 매개 변수를 기본값으로 두는 기본 구성을 보여 줍니다. 이는 백엔드를 정의하는 가장 쉬운 방법입니다.
@@ -443,6 +448,7 @@ defaults:
 ====
 
 
+[[examples-of-backends-with-virtual-pools]]
 == 가상 풀의 백엔드 예
 
 이러한 샘플 백엔드 정의 파일에서 특정 기본값은 모든 스토리지 풀에 대해 설정(예: `spaceReserve` 없음, `spaceAllocation` 거짓, 거짓 `encryption`) 가상 풀은 스토리지 섹션에 정의됩니다.
@@ -587,6 +593,7 @@ storage:
 ====
 
 
+[[map-backends-to-storageclasses]]
 == 백엔드를 StorageClasses에 매핑합니다
 
 다음 StorageClass 정의는 을 <<가상 풀의 백엔드 예>>참조하십시오. 각 StorageClass 는 필드를 사용하여 `parameters.selector` 볼륨을 호스팅하는 데 사용할 수 있는 가상 풀을 호출합니다. 선택한 가상 풀에 볼륨이 정의되어 있습니다.

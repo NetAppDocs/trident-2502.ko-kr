@@ -16,10 +16,12 @@ Kubernetes StorageClass 개체를 구성하고 스토리지 클래스를 생성�
 
 
 
+[[create-a-storage-class]]
 == 스토리지 클래스를 생성합니다
 
 
 
+[[configure-a-kubernetes-storageclass-object]]
 === Kubernetes StorageClass 개체를 구성합니다
 
 는 https://kubernetes.io/docs/concepts/storage/storage-classes/["Kubernetes StorageClass 객체"^] Trident를 해당 클래스에 사용되는 Provisioner로 식별하고 Trident에 볼륨 프로비저닝 방법을 지시합니다. 예를 들면 다음과 같습니다.
@@ -58,6 +60,7 @@ Trident에서 볼륨을 프로비저닝하는 방법을 제어하는 데 사용�
 
 
 
+[[create-a-storage-class]]
 === 스토리지 클래스를 생성합니다
 
 .단계
@@ -83,6 +86,7 @@ basic-csi    csi.trident.netapp.io   15h
 ----
 
 
+[[create-the-pvc]]
 == PVC를 작성합니다
 
 A https://kubernetes.io/docs/concepts/storage/persistent-volumes["_PersistentVolumeClaim_"^](PVC)는 클러스터의 PersistentVolume에 대한 액세스 요청입니다.
@@ -93,6 +97,7 @@ PVC를 생성한 후 포드에 볼륨을 장착할 수 있습니다.
 
 
 
+[[sample-manifests]]
 === 샘플 매니페스트
 
 .PersistentVolume 샘플 매니페스트
@@ -160,6 +165,7 @@ storageClassName: protection-gold
 ====
 
 
+[[create-the-pv-and-pvc]]
 === PV 및 PVC를 작성합니다
 
 .단계
@@ -186,6 +192,7 @@ Trident에서 볼륨을 프로비저닝하는 방법을 제어하는 데 사용�
 
 
 
+[[trident-attributes]]
 == Trident 특성
 
 이러한 매개 변수는 지정된 유형의 볼륨을 프로비저닝하는 데 사용해야 하는 Trident 관리 스토리지 풀을 결정합니다.
