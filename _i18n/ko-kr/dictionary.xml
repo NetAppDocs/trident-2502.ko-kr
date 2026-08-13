@@ -837,7 +837,6 @@
   <block id="c777be7f669397b0a376fe32ca5cd9c3" category="section-title">지원되는 프런트엔드(오케스트레이터)</block>
   <block id="710f95d40d121f27f89b0faa6e178133" category="paragraph">Trident는 다음을 비롯한 다수의 컨테이너 엔진 및 오케스트레이터를 지원합니다.</block>
   <block id="7cc1edf2116d94e97b8f4a69079de132" category="list-text">베어 메탈 기반 Anthos(VMware) 및 Anthos 1.16</block>
-  <block id="30712450d512dae0e7becb73c6a439fb" category="list-text">Kubernetes 1.26-1.32</block>
   <block id="42113cf11e30b764619d3a98db65262d" category="list-text">Rancher Kubernetes Engine 2(RKE2) v1.26.7 + rke2r1, v1.28.5 + rke2r1</block>
   <block id="201eb37826a33e35adff9119f25946bd" category="paragraph">Trident 연산자는 다음 릴리즈에서 지원됩니다.</block>
   <block id="e42907190e2666646d57ade5c061e6e2" category="paragraph">Trident은 Google Kubernetes Engine(GKE), Amazon Elastic Kubernetes Services(EKS), Azure Kubernetes Service(AKS), Mirantis Kubernetes Engine(MKE), VMware Tanzu 포트폴리오를 포함한 기타 완전 관리형 Kubernetes 오퍼링도 지원합니다.</block>
@@ -870,7 +869,6 @@
   <block id="21021ea0e52be8e9c599f4dff41e5be0" category="cell">피처</block>
   <block id="80afba45eb055fc9bdc48c90d1debd06" category="cell">Kubernetes 버전</block>
   <block id="10f295a61d2a793ac8936a69cf458654" category="cell">기능 게이트가 필요합니까?</block>
-  <block id="24493d2fad9ccf981611c84f3d863eb4" category="paragraph">1.26-1.32</block>
   <block id="bafd7322c6e97d25b6299b5d6fe8920b" category="paragraph">아니요</block>
   <block id="e830b7e4d1fb7f84600876af87cb4381" category="cell">볼륨 스냅샷</block>
   <block id="ea8ed249117e76cb53766e218fe2b7c7" category="cell">체적 스냅샷의 PVC</block>
@@ -901,7 +899,6 @@
   <block id="ce8468ce4398f1403e56c8d07fbfbdff" category="paragraph">에어갭 설치의 경우 다음 목록은 Trident 설치에 필요한 컨테이너 이미지의 참조입니다. 명령을 사용하여<block ref="4ebf280824868255c952dc529072ecb9" prefix=" " category="inline-code"></block> 필요한 컨테이너 이미지 목록을 확인합니다.</block>
   <block id="7b5dfababf92391b5761944c63b0d3bb" category="cell">Kubernetes 버전</block>
   <block id="aa92c4c233bc01609d957e469736b699" category="cell">컨테이너 이미지</block>
-  <block id="d14770b30eb9f7db4088f360204c02b5" category="cell">v1.26.0, v1.27.0, v1.28.0, v1.29.0, v1.30.0, v1.31.0, v1.32.0</block>
   <block id="ab5b520e06e8f60c2eb43897deda1dd9" category="list-text">Docker.IO/NetApp/트라이덴트:25.02.0</block>
   <block id="78cd2bf2aaf1655ef471d7da97aa4ef9" category="list-text">Docker.IO/netapp/trident-autosupport:25.02</block>
   <block id="b55333d21cb50b1d1d34c529c999482f" category="list-text">registry.k8s.io/sig-storage/csi-provisioner: v5.2.0</block>
@@ -5214,8 +5211,6 @@
   <block id="f18a50f02f48551895d57b81dd288142" category="sidebar">네임스페이스 전체에서 NFS 볼륨을 공유합니다</block>
   <block id="62486fa65fc31c383ace8989549632ad" category="sidebar">스냅샷을 사용합니다</block>
   <block id="b71ccf1062cee8c376a7eb37e3c42603" category="cell">LUKS 암호화를 사용합니다. 을 <block ref="569f9f91cdcc19909b8acbf6f423daf7" category="inline-link-macro-rx"></block>참조하십시오.</block>
-  <block id="f7e1bdb9d12dcb4909e8a56dd591da30" category="list-text">오픈시프트 4.13 - 4.18</block>
-  <block id="9655e6779bbfb76d89c5ff39269da4db" category="list-text">오픈시프트 4.13-4.18</block>
   <block id="50b9f8f4650a278b466928c2105fc23a" category="list-text"><block ref="769cb50c95fd3a43c659aa73aba99e5b" prefix="" category="inline-code"></block>(지정해야 함)<block ref="aadd5cec42dbc02d51f62a1095401f59" prefix=" " category="inline-code"></block> )</block>
   <block id="03b866ae4a8a50619a4126154196606b" category="list-text"><block ref="c512b685438f41daa7386329a3b8f8d3" prefix="" category="inline-code"></block>(지정해야 함)<block ref="aadd5cec42dbc02d51f62a1095401f59" prefix=" " category="inline-code"></block> 그리고<block ref="9199af27775b1a2a876e6d7b25540711" prefix=" " category="inline-code"></block> )</block>
   <block id="2cfd34c47c4dbe46650e40185474bd21" category="list-text"><block ref="6c25e6a6da95b3d583c6ec4c3f82ed4d" prefix="" category="inline-code"></block>(지정해야 함)<block ref="d5870327522a71f5b75f9d3793d0dc97" prefix=" " category="inline-code"></block> , 그리고<block ref="4a04848e0e6e9423892ebc93ae61842d" prefix=" " category="inline-code"></block> )</block>
@@ -5475,6 +5470,13 @@
   <block id="9ea1dc44c501f59786a0dd2c5ebc2d21" category="list-text">Trident AutoSupport는 개인 식별 정보(PII) 또는 개인 정보를 수집하거나 전송하지 않습니다. Trident 컨테이너 이미지 자체에는 적용되지 않는<block ref="ea14b34590cee15ec565ad8fd8feca2e" category="inline-link-rx"></block>와 함께 제공됩니다. NetApp의 데이터 보안 및 신뢰에 대한 노력에 대해 자세히 알아볼 수 있습니다<block ref="ea3b01bc03342a227ac7c6848f1e44fa" category="inline-link-rx"></block>.</block>
   <block id="0aed33e870a02a203987e1f6cbeb75d8" category="list-text">Trident를<block ref="5990d744db8a85d254742635736f0912" category="inline-link-rx"></block> 사용할 때 발생할 수 있는 일반적인 문제는 테넌트 및 클라이언트 암호가 권한이 부족한 앱 등록에서 제공되는 경우입니다. Trident 요구 사항의 전체 목록은 <block ref="afedf4ee56554ea6e6b54e6aa206680c" category="inline-link-macro-rx"></block> 구성을 참조하십시오.</block>
   <block id="218a0c4bd3daf2a2ce3574281b7ca0b2" category="paragraph"><block ref="d5658c9dfbfb4ef585182e92445a8919" category="inline-link-macro-rx"></block>을(를) 검토하여 설치 사전 요구 사항을 충족했는지, 그리고 사용 환경에 맞는 올바른 설치 옵션을 선택했는지 확인하십시오.</block>
-  <block id="3b09004494ad8605a5dd0f3024d25e71" category="paragraph"><block ref="664da4bd07fc6e33aa43f13bb999ea26" category="inline-link-macro-rx"></block> 외에도 <block ref="fc0cdbd8defe0c7175199dd05a0f8e76" category="inline-link-macro-rx"></block>이(가) 필요합니다.</block>
   <block id="b7bec5d0d77ca93cd7a03308720c371e" category="paragraph">수동으로 배포하든 Helm을 사용하든, Trident operator는 설치를 간소화하고 Trident 리소스를 동적으로 관리하는 훌륭한 방법입니다. <block ref="a1f2adae0e8434fa57fbe3e21b52345e" category="inline-link-macro-rx"></block><block ref="ae61bf6af1a7406b62c72a4bef1ab62d" prefix=" " category="inline-code"></block> 사용자 정의 리소스(CR)의 속성을 활용할 수도 있습니다.</block>
+  <block id="3b30a7aea8a6f98824f61888e8628449" category="inline-link-macro">Red Hat Extended Update Support(EUS) 릴리스 라이프사이클</block>
+  <block id="6b62784ed0975ba9ec1e2f69af860e25" category="admonition">Trident는 <block ref="d73f30265a77d175825591fd08508146" category="inline-link-macro-rx"></block>에 따라 이전 OpenShift 버전을 계속 지원합니다. 이는 업스트림에서 공식적으로 더 이상 지원되지 않는 Kubernetes 버전을 사용하는 경우에도 마찬가지입니다. 이러한 경우 Trident를 설치할 때 Kubernetes 버전에 대한 경고 메시지는 무시하셔도 됩니다.</block>
+  <block id="58830b43d96c301076f2636c9bb946d5" category="list-text">Kubernetes 1.25 - 1.32</block>
+  <block id="f0d98f3855f063d6ad8de4e10d9cf4ca" category="list-text">OpenShift 4.12 - 4.18</block>
+  <block id="20b6ad85e9b94fb2edd0bbaa1a135ec2" category="list-text">OpenShift 4.12- 4.18</block>
+  <block id="2d95fd2a9f3bf1dcac56e3de82d288ad" category="paragraph">1.25 - 1.32</block>
+  <block id="2ec43b8882dfc130c999d1ebfae88d87" category="cell">v1.25.0, v1.26.0, v1.27.0, v1.28.0, v1.29.0, v1.30.0, v1.31.0, v1.32.0</block>
+  <block id="db7fc8df66e930e05282807a6ebd58f4" category="paragraph"><block ref="1feb3274d112f2cef694d133af384cac" category="inline-link-macro-rx"></block> 외에도 <block ref="fc0cdbd8defe0c7175199dd05a0f8e76" category="inline-link-macro-rx"></block>이(가) 필요합니다.</block>
 </blocks>
